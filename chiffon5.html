@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>悠花シフォン | 田舎の家カフェ</title>
+<link href="https://fonts.googleapis.com/css2?family=Kaisei+Tokumin:wght@400;500&family=Noto+Sans+JP:wght@300;400&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --kraft:#EDE0C4;
+  --kraft-dark:#DFD0AA;
+  --kraft-deeper:#CFC09A;
+  --ink:#2E2318;
+  --rust:#A85C38;
+  --rust-light:#C4845C;
+  --moss:#5A7048;
+  --moss-light:#8AA870;
+  --muted:#6A5840;
+  --border:#C8B890;
+}
+html{scroll-behavior:smooth}
+body{background:var(--kraft);color:var(--ink);font-family:'Noto Sans JP',sans-serif;font-weight:300;line-height:2;font-size:15px}
+
+/* kraft paper texture via repeating pattern */
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='4' fill='none'/%3E%3Ccircle cx='1' cy='1' r='0.4' fill='%23C8B890' opacity='0.3'/%3E%3Ccircle cx='3' cy='3' r='0.4' fill='%23C8B890' opacity='0.2'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
+body>*{position:relative;z-index:1}
+
+.container{max-width:860px;margin:0 auto;padding:0 24px}
+.kaisei{font-family:'Kaisei Tokumin',serif}
+.caveat{font-family:'Caveat',cursive}
+
+/* rope-style border */
+.rope-top{height:8px;background:repeating-linear-gradient(90deg,var(--rust) 0,var(--rust) 8px,var(--rust-light) 8px,var(--rust-light) 16px,var(--kraft-dark) 16px,var(--kraft-dark) 24px,var(--rust-light) 24px,var(--rust-light) 32px);opacity:0.6}
+
+/* HERO */
+#hero{padding:56px 0 72px;text-align:center;background:var(--kraft)}
+.hero-top-deco{font-family:'Caveat',cursive;font-size:16px;color:var(--muted);letter-spacing:0.1em;margin-bottom:24px;display:block}
+.hero-img-round{width:min(380px,90%);aspect-ratio:1/1;border-radius:50%;overflow:hidden;margin:0 auto 40px;border:6px solid var(--kraft-dark);box-shadow:0 0 0 2px var(--border),0 0 0 10px var(--kraft),0 0 0 12px var(--border)}
+.hero-img-round img{width:100%;height:100%;object-fit:cover;filter:saturate(0.88) contrast(1.05)}
+.hero-handtitle{font-family:'Kaisei Tokumin',serif;font-size:clamp(26px,5vw,40px);font-weight:400;line-height:1.65;color:var(--ink);margin-bottom:20px;letter-spacing:0.06em}
+.hero-handtitle em{font-style:normal;color:var(--rust);border-bottom:2px solid var(--rust-light)}
+.hero-sub{font-size:14px;color:var(--muted);line-height:2;margin-bottom:12px}
+.hero-shop-note{font-family:'Caveat',cursive;font-size:15px;color:var(--moss);margin-bottom:36px;display:block}
+
+/* scene tags */
+.tag-cloud{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:40px}
+.tag-E{font-family:'Caveat',cursive;font-size:14px;padding:6px 16px;background:transparent;color:var(--muted);border:1.5px solid var(--border);border-radius:999px}
+
+.btn-E{display:inline-block;background:var(--rust);color:#fff;font-family:'Kaisei Tokumin',serif;font-size:16px;letter-spacing:0.12em;padding:14px 48px;text-decoration:none;border-radius:999px;box-shadow:0 4px 0 var(--ink);transition:all 0.2s}
+.btn-E:hover{transform:translateY(2px);box-shadow:0 2px 0 var(--ink)}
+
+/* hand-ruled line */
+.hr-hand{border:none;border-top:2px dashed var(--border);margin:40px 0;opacity:0.6}
+
+/* SECTIONS generic */
+.sec{padding:64px 0}
+.sec-alt{background:var(--kraft-dark)}
+.sec-label{font-family:'Caveat',cursive;font-size:18px;color:var(--rust);display:block;margin-bottom:8px;text-align:center}
+.sec-h2{font-family:'Kaisei Tokumin',serif;font-size:clamp(20px,3.5vw,28px);font-weight:400;text-align:center;margin-bottom:8px;letter-spacing:0.06em;line-height:1.6}
+.sec-sub{font-size:13px;color:var(--muted);text-align:center;margin-bottom:48px}
+
+/* STORY */
+.story-wrap{display:grid;grid-template-columns:2fr 3fr;gap:48px;align-items:start}
+.story-photo{position:relative}
+.story-photo img{width:100%;display:block;border:3px solid var(--kraft-dark);border-radius:4px}
+.story-sticky-note{position:absolute;bottom:-20px;right:-20px;background:#FFF8D6;padding:14px 16px;transform:rotate(2deg);font-family:'Caveat',cursive;font-size:15px;color:var(--ink);line-height:1.5;box-shadow:2px 3px 6px rgba(0,0,0,0.12);border-top:3px solid var(--rust-light)}
+.story-text p{font-size:14px;color:var(--muted);line-height:2.2;margin-bottom:20px}
+.story-text p:first-of-type::first-letter{font-family:'Kaisei Tokumin',serif;font-size:40px;font-weight:500;color:var(--rust);float:left;line-height:0.8;margin-right:6px;margin-top:8px}
+
+/* INGREDIENTS — chalkboard style */
+#ingredients{background:var(--moss);padding:64px 0}
+#ingredients .sec-label{color:rgba(255,255,255,0.6)}
+#ingredients .sec-h2{color:#fff}
+.chalk-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:40px}
+.chalk-item{text-align:center;padding:24px 8px;border:1.5px dashed rgba(255,255,255,0.25);border-radius:8px}
+.chalk-item .ic{font-size:26px;display:block;margin-bottom:10px}
+.chalk-item h3{font-family:'Kaisei Tokumin',serif;font-size:12px;color:#fff;margin-bottom:6px;font-weight:400}
+.chalk-item p{font-size:10px;color:rgba(255,255,255,0.6);line-height:1.7}
+
+/* MAPLE */
+.maple-wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.maple-photo img{width:100%;display:block;border:3px solid var(--kraft-dark);border-radius:4px}
+.maple-card{background:var(--kraft);border:1.5px solid var(--border);border-radius:8px;padding:24px 20px;margin-bottom:16px;position:relative}
+.maple-card::before{content:attr(data-num);font-family:'Caveat',cursive;font-size:36px;color:var(--kraft-dark);position:absolute;top:-8px;left:12px;line-height:1}
+.maple-card h3{font-family:'Kaisei Tokumin',serif;font-size:16px;font-weight:400;margin-bottom:6px;margin-top:4px;color:var(--ink)}
+.maple-card p{font-size:13px;color:var(--muted);line-height:1.9}
+
+/* ABOUT */
+.about-wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.about-photo{position:relative}
+.about-photo img{width:100%;display:block;border:3px solid var(--kraft-dark);border-radius:4px;filter:sepia(15%) saturate(0.9)}
+.about-badge{position:absolute;top:-16px;right:-16px;width:80px;height:80px;background:var(--rust);border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;border:3px solid var(--kraft)}
+.about-badge span{font-family:'Caveat',cursive;font-size:12px;color:#fff;line-height:1.4}
+.about-text h2{font-family:'Kaisei Tokumin',serif;font-size:24px;font-weight:400;margin-bottom:16px;line-height:1.6}
+.about-text p{font-size:14px;color:var(--muted);line-height:2.1;margin-bottom:16px}
+
+/* PRODUCTS */
+.prod-grid-E{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.prod-E{background:var(--kraft);border:1.5px solid var(--border);border-radius:8px;overflow:hidden}
+.prod-E-img{aspect-ratio:4/3;overflow:hidden}
+.prod-E-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s;filter:saturate(0.9)}
+.prod-E:hover img{transform:scale(1.04)}
+.prod-E-body{padding:20px}
+.prod-E h3{font-family:'Kaisei Tokumin',serif;font-size:16px;font-weight:400;margin-bottom:8px}
+.prod-E .price{font-family:'Caveat',cursive;font-size:26px;color:var(--rust);margin-bottom:2px}
+.prod-E .note{font-size:11px;color:var(--muted);margin-bottom:10px}
+.prod-E p{font-size:13px;color:var(--muted);line-height:1.9;margin-bottom:12px}
+.prod-E a{font-family:'Caveat',cursive;font-size:15px;color:var(--moss);text-decoration:none;border-bottom:1px dashed var(--moss-light)}
+
+/* CTA */
+#cta{padding:80px 0;text-align:center;background:var(--kraft-deeper)}
+.cta-box{border:2px solid var(--border);border-radius:12px;padding:56px 48px;background:var(--kraft);display:inline-block;max-width:600px;width:100%}
+.cta-icon{font-size:40px;display:block;margin-bottom:16px}
+#cta h2{font-family:'Kaisei Tokumin',serif;font-size:clamp(20px,3vw,28px);font-weight:400;margin-bottom:16px;line-height:1.6;letter-spacing:0.06em}
+#cta p{font-size:14px;color:var(--muted);margin-bottom:36px;line-height:2}
+
+/* FOOTER */
+footer{background:var(--ink);padding:28px 0;text-align:center}
+footer p{font-size:12px;color:#7A6454;letter-spacing:0.08em}
+footer a{color:var(--rust-light);text-decoration:none}
+
+@media(max-width:680px){
+  .story-wrap,.maple-wrap,.about-wrap,.prod-grid-E{grid-template-columns:1fr}
+  .story-sticky-note{position:static;transform:rotate(1deg);display:inline-block;margin-top:16px}
+  .about-badge{top:-12px;right:-8px}
+  .chalk-grid{grid-template-columns:repeat(2,1fr)}
+  .cta-box{padding:40px 24px}
+}
+</style>
+</head>
+<body>
+
+<div class="rope-top"></div>
+
+<section id="hero" class="sec">
+  <div class="container">
+    <span class="hero-top-deco">〜 香川 坂出のちいさなカフェから 〜</span>
+    <div class="hero-img-round">
+      <img src="https://baseec-img-mng.akamaized.net/images/item/origin/f02148972223f883f0d700a17aaca709.jpg?imformat=generic&q=90&im=Resize,width=1280,type=normal" alt="プレミアムシフォンケーキ">
+    </div>
+    <h1 class="hero-handtitle">素朴なのに、<em>贅沢</em>な味わい。<br>ふわっとほどける<br>プレミアムシフォン。</h1>
+    <p class="hero-sub">卵・砂糖・小麦粉・塩・油。<br>シンプルな材料だから、素材の質にとことんこだわりました。</p>
+    <span class="hero-shop-note">🏡 カフェスイーツ 悠花シフォン</span>
+    <div class="tag-cloud">
+      <span class="tag-E">🍵 お茶のお供に</span>
+      <span class="tag-E">🎁 手土産・お礼に</span>
+      <span class="tag-E">✨ 自分へのご褒美に</span>
+    </div>
+    <a href="https://cafeyuka2021.base.ec/" target="_blank" rel="noopener" class="btn-E">オンラインショップへ</a>
+  </div>
+</section>
+
+<section class="sec sec-alt">
+  <div class="container">
+    <span class="sec-label">作り手のこだわり</span>
+    <h2 class="sec-h2">シンプルな材料だから、<br>一つひとつの質にとことんこだわる。</h2>
+    <hr class="hr-hand">
+    <div class="story-wrap">
+      <div class="story-photo">
+        <img src="https://baseec-img-mng.akamaized.net/images/item/origin/2584a51822268f9e00db5381eed12c34.jpg?imformat=generic&q=90&im=Resize,width=1280,type=normal" alt="シフォンケーキ">
+        <div class="story-sticky-note">ひと口で<br>ふわっとほどける🕊</div>
+      </div>
+      <div class="story-text">
+        <p>コクのある卵をたっぷり使い、やさしい甘さのきび砂糖と、北海道産の小麦、地中海沿岸で育ったオリーブオイルを丁寧に合わせることで、ひと口でふわっとほどけて、素朴なのに贅沢な風味に仕上げています。</p>
+        <p>仕上げに振ったゲランドの塩と、ほんのり効かせたはちみつやアーモンド、バニラ、乳由来のコクが、奥行きのあるおいしさをそっと忍ばせています。</p>
+        <p>甘みと塩味が静かに重なり合う、その繊細な余韻が一口ごとに表情を変えていきます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ingredients">
+  <div class="container">
+    <span class="sec-label">厳選した素材たち</span>
+    <h2 class="sec-h2" style="color:#fff">5つのこだわり素材</h2>
+    <div class="chalk-grid">
+      <div class="chalk-item"><span class="ic">🥚</span><h3>コクのある卵</h3><p>たっぷりの卵黄でふわふわ食感</p></div>
+      <div class="chalk-item"><span class="ic">🌾</span><h3>北海道産小麦</h3><p>軽やかな口どけと上品な香り</p></div>
+      <div class="chalk-item"><span class="ic">🍯</span><h3>きび砂糖＋はちみつ</h3><p>まろやかな甘みとしっとり感</p></div>
+      <div class="chalk-item"><span class="ic">🫒</span><h3>地中海オリーブオイル</h3><p>フルーティーな旨みが生地に</p></div>
+      <div class="chalk-item"><span class="ic">🧂</span><h3>ゲランドの塩</h3><p>甘みを引き立てる仕上げの塩</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="container">
+    <span class="sec-label">2通りの楽しみ方</span>
+    <h2 class="sec-h2">ひとつで、ふたつの味わいを。</h2>
+    <p class="sec-sub">メープル入りシロップ付きだから、気分で楽しみ方が変わります。</p>
+    <div class="maple-wrap">
+      <div class="maple-photo">
+        <img src="https://baseec-img-mng.akamaized.net/images/item/origin/ff7cf9cbf57dd493e29a38bafdc2d211.jpg?imformat=generic&q=90&im=Resize,width=1280,type=normal" alt="メープルシロップ">
+      </div>
+      <div>
+        <div class="maple-card" data-num="1">
+          <h3>まずはそのまま</h3>
+          <p>素材の風味が際立つ、シフォン本来の軽やかな口どけをお楽しみください。</p>
+        </div>
+        <div class="maple-card" data-num="2">
+          <h3>次にメープルシロップをかけて</h3>
+          <p>デザート感がぐっと増した、リッチな味わいに早変わりします。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-alt">
+  <div class="container">
+    <span class="sec-label">お店について</span>
+    <h2 class="sec-h2">香川の三角屋根の<br>ちいさなカフェから。</h2>
+    <hr class="hr-hand">
+    <div class="about-wrap">
+      <div class="about-photo">
+        <img src="https://baseec-img-mng.akamaized.net/images/shop_front/cafeyuka2021-base-ec/d68c1344aa45012d849b6f08a1dcc5e3.jpg" alt="カフェ悠花">
+        <div class="about-badge"><span>since<br>2018<br>香川</span></div>
+      </div>
+      <div class="about-text">
+        <h2>ふわふわのシフォンで<br>至福のひとときを</h2>
+        <p>2018年、香川県坂出市に生まれたちいさなカフェ。三角屋根のかわいらしいお店で、地元のお客様に愛されてきたシフォンケーキを、全国の皆様へお届けします。</p>
+        <p>自分へのささやかなご褒美にも、大切な方への贈り物にも。素材ひとつひとつの持ち味を生かした、こだわりのシフォンをぜひ味わってみてください。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="container">
+    <span class="sec-label">おすすめ商品</span>
+    <h2 class="sec-h2">商品ラインナップ</h2>
+    <p class="sec-sub">メープルシロップ付きでお届けします。</p>
+    <div class="prod-grid-E">
+      <div class="prod-E">
+        <div class="prod-E-img"><img src="https://baseec-img-mng.akamaized.net/images/item/origin/f02148972223f883f0d700a17aaca709.jpg?imformat=generic&q=90&im=Resize,width=1280,type=normal" alt="4個セット"></div>
+        <div class="prod-E-body">
+          <h3>プレミアムシフォンケーキ<br>4個セット</h3>
+          <div class="price">¥2,600</div>
+          <div class="note">税込・送料別</div>
+          <p>手土産や、ご自宅でのティータイムに。</p>
+          <a href="https://cafeyuka2021.base.ec/items/49695854" target="_blank" rel="noopener">詳しくはこちら →</a>
+        </div>
+      </div>
+      <div class="prod-E">
+        <div class="prod-E-img"><img src="https://baseec-img-mng.akamaized.net/images/item/origin/b12a0113017b500e2e03aeacb51039ef.jpg?imformat=generic&q=90&im=Resize,width=1280,type=normal" alt="6個セット"></div>
+        <div class="prod-E-body">
+          <h3>プレミアムシフォンケーキ<br>6個セット</h3>
+          <div class="price">¥3,600</div>
+          <div class="note">税込・送料別</div>
+          <p>特別な方への贈り物にもどうぞ。</p>
+          <a href="https://cafeyuka2021.base.ec/items/116675349" target="_blank" rel="noopener">詳しくはこちら →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cta">
+  <div class="container" style="text-align:center">
+    <div class="cta-box">
+      <span class="cta-icon">🏡</span>
+      <h2>自分へのご褒美にも、<br>大切な方への贈り物にも。</h2>
+      <p>こだわりのプレミアムシフォンケーキを、<br>オンラインショップでお求めいただけます。</p>
+      <a href="https://cafeyuka2021.base.ec/" target="_blank" rel="noopener" class="btn-E">オンラインショップへ</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>© カフェスイーツ 悠花シフォン · <a href="https://cafeyuka2021.base.ec/" target="_blank" rel="noopener">cafeyuka2021.base.ec</a></p>
+  </div>
+</footer>
+</body>
+</html>
